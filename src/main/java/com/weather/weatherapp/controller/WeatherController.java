@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.weather.weatherapp.dtos.WeatherResponseDto;
+import com.weather.weatherapp.exceptions.DataNotFoundException;
 import com.weather.weatherapp.service.WeatherSvc;
 
 @RestController
@@ -18,8 +19,7 @@ public class WeatherController {
     private WeatherSvc svc;
 
     @GetMapping
-    public ResponseEntity<WeatherResponseDto> getWeather(@RequestParam String city){
-        
+    public ResponseEntity<WeatherResponseDto> getWeather(@RequestParam String city) throws DataNotFoundException{
         WeatherResponseDto response = svc.getWeather(city);
         return ResponseEntity.ok().body(response);
         } 
