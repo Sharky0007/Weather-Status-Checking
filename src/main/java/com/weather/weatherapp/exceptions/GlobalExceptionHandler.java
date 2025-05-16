@@ -6,7 +6,7 @@ import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.weather.payload.ApiResponse;
+import com.weather.weatherapp.payload.ApiResponse;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {

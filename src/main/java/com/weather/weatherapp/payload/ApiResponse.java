@@ -1,4 +1,4 @@
-package com.weather.payload;
+package com.weather.weatherapp.payload;
 
 import org.springframework.http.HttpStatus;
 
