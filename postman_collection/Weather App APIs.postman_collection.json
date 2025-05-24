@@ -1,0 +1,117 @@
+{
+	"info": {
+		"_postman_id": "25e5afe9-066c-4a43-9d1e-e719bf181bff",
+		"name": "Weather App APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44953800",
+		"_collection_link": "https://shouvik-5195361.postman.co/workspace/Shouvik's-Workspace~d955ed13-d1c9-4e8a-86c8-c32d31f15167/collection/44953800-25e5afe9-066c-4a43-9d1e-e719bf181bff?action=share&source=collection_link&creator=44953800"
+	},
+	"item": [
+		{
+			"name": "get weather details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/api/weather?city=ooty",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "city",
+							"value": "ooty"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get weather details",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/weather?city=aus",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"weather"
+							],
+							"query": [
+								{
+									"key": "city",
+									"value": "aus"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 23 May 2025 12:41:39 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"latitude\": -26.6622,\n    \"longitude\": 16.2627,\n    \"resolvedAddress\": \"Aus, Karas, Namibia\",\n    \"timezone\": \"Africa/Windhoek\",\n    \"currentConditions\": {\n        \"datetime\": \"14:00:00\",\n        \"datetimeEpoch\": 1748001600,\n        \"temp\": 23,\n        \"feelslike\": 23,\n        \"humidity\": 12.81,\n        \"windspeed\": 11.2,\n        \"conditions\": \"Clear\",\n        \"icon\": \"clear-day\"\n    }\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
