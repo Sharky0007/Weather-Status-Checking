@@ -1,6 +1,11 @@
 package com.weather.weatherapp.service;
 
+import java.time.Duration;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -18,6 +23,10 @@ public class WeatherSvc {
     @Value("${weather.api.key}")
     private String apiKey;
 
+    @Autowired
+    RedisTemplate<String, WeatherResponseDto> redisTemplate;
+
+    // @Cacheable(value = "City", key = "#city")
     public WeatherResponseDto getWeather(String city) throws DataNotFoundException {
 
         String url = baseUrl + city + "?unitGroup=metric&key=" + apiKey + "&include=current";
@@ -27,6 +36,7 @@ public class WeatherSvc {
         WeatherResponseDto res = new WeatherResponseDto();
 
     try{
+            System.out.println("Fetching fresh weather data for: " + city);
             ResponseEntity<WeatherResponseDto> response = restTemplate.getForEntity(url, WeatherResponseDto.class);
             WeatherResponseDto json = response.getBody();
             res.setTimezone(json.getTimezone());
@@ -42,9 +52,17 @@ public class WeatherSvc {
             curr.setWindspeed(json.getCurrentConditions().getWindspeed());
             curr.setConditions(json.getCurrentConditions().getConditions());
             res.setCurrentConditions(curr);
+            setCache(city, res);
         } catch(Exception e){     
+            e.printStackTrace();
             throw new DataNotFoundException("No Data Found for city: "+ city);
         }
         return res;
+    }
+
+    private void setCache(String city, WeatherResponseDto res){
+       redisTemplate.opsForValue().set(city, res, Duration.ofMinutes(1));
+       Object data = redisTemplate.opsForValue().get(city);
+       System.out.println("data: "+ data);
     }
 }

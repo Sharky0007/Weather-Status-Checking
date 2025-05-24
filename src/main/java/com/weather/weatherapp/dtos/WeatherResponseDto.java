@@ -1,9 +1,11 @@
 package com.weather.weatherapp.dtos;
 
+import java.io.Serializable;
+
 import lombok.Data;
 
 @Data
-public class WeatherResponseDto {
+public class WeatherResponseDto implements Serializable {
     
     private double latitude;
     private double longitude;

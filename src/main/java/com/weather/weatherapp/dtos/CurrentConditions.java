@@ -1,10 +1,11 @@
 package com.weather.weatherapp.dtos;
 
+import java.io.Serializable;
 import java.time.LocalTime;
 import lombok.Data;
 
 @Data
-public class CurrentConditions {
+public class CurrentConditions implements Serializable {
     private LocalTime datetime; 
     private long datetimeEpoch;
     private double temp;
